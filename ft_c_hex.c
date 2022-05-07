@@ -6,89 +6,101 @@
 /*   By: msalmon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 12:39:09 by msalmon-          #+#    #+#             */
-/*   Updated: 2022/05/02 18:30:58 by msalmon-         ###   ########.fr       */
+/*   Updated: 2022/05/07 19:22:36 by msalmon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-static void	ft_print_val(int num, char c);
-static int ft_proba(int n, char c);
+static int	ft_get_len(unsigned long num, char character);
+static char	ft_get_character(unsigned long num, char c);
 
-int	convert_to_hexa(int n, char character)
+int	convert_to_hexa(unsigned long n, char character)
 {
-	char	c;
 	int		i;
+	char	*str;
+	int		size;
 
 	i = 0;
-	if (n < 0)
+	size = ft_get_len(n, character);
+	str = calloc(size + 1, sizeof(char));
+	if(str == NULL)
+		return(-1);
+	while (i < size)
 	{
-		write(1, "-", 1);
-		n *= -1;
-	}
-	while (n > 16)
-	{
-		n = ft_proba(n, character);
+		if (character == 'p' && (size - 1) == i)
+			str[size - i - 1] = '0';
+		else if (character == 'p' && (size - 2) == i)
+			str[size - i - 1] = 'x';
+		else if (n < 16)
+			str[size - i - 1] = ft_get_character(n, character);
+		else
+		{
+			str[size - i - 1] = ft_get_character((n % 16), character);
+			n /= 16;
+		}
 		i++;
 	}
-	i++;
-	if (n > 9)
-	   ft_print_val(n, character);
-	else
-	{
-		c = (n + '0');
-		write(1, &c, 1);
-	}
-	printf("\nel valor devuelto es:%i\n", i);
+	ft_putstr(str);
+	free(str);
 	return (i);
 }
 
-static int ft_proba(int n, char c)
+static int ft_get_len(unsigned long num, char character)
 {
-	int val;
-	val = n % 16;	
-//	printf("el resto es=%i\n", val);
-	if (val < 10)
+	int i;
+
+	i = 0;
+	if(character == 'p')
+		i = 2;
+	while(num > 15)
 	{
-		val = val + '0';
-		write(1, &val, 1);
+		num /= 16;
+		i++;
 	}
-	else
-		ft_print_val(val, c);
-	n /= 16;
-//	printf("numero antes de dividir=%i\n", n);
-	return (n);
+	if(num >= 0)
+		i++;
+	return (i);
 }
 
-static void	ft_print_val(int num, char c)
+static char	ft_get_character(unsigned long num, char c)
 {
 	char x;
-//	printf("numero que recibe %i\n para imprimir", num);
-	if (num == 10)
+
+//	printf("numero que recibe %d\n para imprimir", num);
+	if (num < 10)
+		x = num + '0';
+	else if (num == 10)
 		x = 'a';
-		//write(1, "a", 1);
 	else if (num == 11)
 		x = 'b';
-		//write(1, "b", 1);
 	else if (num == 12)
 		x = 'c';
-		//write(1, "c", 1);
 	else if (num == 13)
 		x = 'd';
-	//write(1, "d", 1);
 	else if (num == 14)
 		x = 'e';
-		//write(1, "e", 1);
 	else if (num == 15)
 		x = 'f';
-		//write(1, "f", 1);
-	if (c == 'X')
+	if (c == 'X' && num > 9)
 		x -= 32;
-	write(1, &x, 1);
-	return ((void)0);
+	return (x);
 }
 
+/*
 int main(void)
 {
-	convert_to_hexa(500, 'x');
-}
+	unsigned int x = 32;
+	unsigned long z = 32;
+	unsigned int *a = &x;
+
+	convert_to_hexa(x, 'x');
+	convert_to_hexa(x, 'X');
+	convert_to_hexa((unsigned long)&z, 'p');
+	printf("\noriginal:\n%x, %X, %p\n", x, x, &z);
+	int w = printf("%p", &z);
+//	printf("\n%x\n", x);
+//	printf("\n%X\n", x);
+	printf("la original imprime; %d\n", w);
+//	ft_get_len(x, 'p');
+}*/

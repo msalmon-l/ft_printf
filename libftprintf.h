@@ -6,7 +6,7 @@
 /*   By: msalmon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 22:00:29 by msalmon-          #+#    #+#             */
-/*   Updated: 2022/05/03 20:41:16 by msalmon-         ###   ########.fr       */
+/*   Updated: 2022/05/07 18:36:09 by msalmon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int		ft_get_value(const char c, va_list str);
 int		ft_putstr(char *str);
 void	ft_putnbr_base(int nbr, char *base);
 char	*ft_itoa(int n);
-int		convert_to_hexa(int n, char character);
+int		convert_to_hexa(unsigned long n, char character);
 void	*ft_calloc(size_t count, size_t size);
 char	*ft_convert_bin(int num);
 void	ft_bzero(void *s, size_t n);
