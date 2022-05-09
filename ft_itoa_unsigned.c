@@ -6,7 +6,7 @@
 /*   By: msalmon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 20:04:31 by msalmon-          #+#    #+#             */
-/*   Updated: 2022/03/04 18:35:05 by msalmon-         ###   ########.fr       */
+/*   Updated: 2022/05/09 19:43:43 by msalmon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ static unsigned int	ft_get_len(unsigned int n);
 unsigned char	*ft_itoa_unsigned(unsigned int n)
 {
 	unsigned char	*str;
-	unsigned int		i;
-	unsigned long		dividir;
+	unsigned int	i;
+	unsigned long	dividir;
 
 	dividir = n;
 	i = ft_get_len(dividir) - 1;
@@ -59,7 +59,6 @@ static unsigned int	ft_get_len(unsigned int n)
 	}
 	else
 		i++;
-//	printf("\ndevuelve:%u\n", i);
 	return (i);
 }
 /*

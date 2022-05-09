@@ -6,7 +6,7 @@
 /*   By: msalmon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 12:39:09 by msalmon-          #+#    #+#             */
-/*   Updated: 2022/05/07 19:22:36 by msalmon-         ###   ########.fr       */
+/*   Updated: 2022/05/09 20:14:05 by msalmon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,6 @@ int	convert_to_hexa(unsigned long n, char character)
 	i = 0;
 	size = ft_get_len(n, character);
 	str = calloc(size + 1, sizeof(char));
-	if(str == NULL)
-		return(-1);
 	while (i < size)
 	{
 		if (character == 'p' && (size - 1) == i)
@@ -46,28 +44,27 @@ int	convert_to_hexa(unsigned long n, char character)
 	return (i);
 }
 
-static int ft_get_len(unsigned long num, char character)
+static int	ft_get_len(unsigned long num, char character)
 {
-	int i;
+	int	i;
 
 	i = 0;
-	if(character == 'p')
+	if (character == 'p')
 		i = 2;
-	while(num > 15)
+	while (num > 15)
 	{
 		num /= 16;
 		i++;
 	}
-	if(num >= 0)
+	if (num >= 0)
 		i++;
 	return (i);
 }
 
 static char	ft_get_character(unsigned long num, char c)
 {
-	char x;
+	char	x;
 
-//	printf("numero que recibe %d\n para imprimir", num);
 	if (num < 10)
 		x = num + '0';
 	else if (num == 10)

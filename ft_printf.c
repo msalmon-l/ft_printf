@@ -6,11 +6,12 @@
 /*   By: msalmon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 21:52:11 by msalmon-          #+#    #+#             */
-/*   Updated: 2022/05/07 19:44:38 by msalmon-         ###   ########.fr       */
+/*   Updated: 2022/05/09 19:56:50 by msalmon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
+#include "ft_printf.h"
 
 static int	ft_print_numbers(va_list num, const char c);
 
@@ -49,11 +50,8 @@ int	ft_get_value(const char c, va_list	str)
 
 	s = NULL;
 	i = 0;
-	/*if (c == 0)
-		return (-1);*/
 	if (c == 'c')
 		i = ft_putchar(va_arg(str, int));
-		//write(1, &(va_arg(str, char)), 1);
 	else if (c == 's')
 		i = ft_putstr(va_arg(str, char *));
 	else if (c == 'p')
@@ -71,7 +69,7 @@ static int	ft_print_numbers(va_list num, const char c)
 {
 	int				i;
 	char			*str;
-	
+
 	i = 0;
 	str = NULL;
 	if (c == 'u')
