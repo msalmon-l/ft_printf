@@ -49,10 +49,11 @@ int	ft_get_value(const char c, va_list	str)
 
 	s = NULL;
 	i = 0;
-	if (c == 0)
-		return (-1);
+	/*if (c == 0)
+		return (-1);*/
 	if (c == 'c')
-		write(1, &c, 1);
+		i = ft_putchar(va_arg(str, int));
+		//write(1, &(va_arg(str, char)), 1);
 	else if (c == 's')
 		i = ft_putstr(va_arg(str, char *));
 	else if (c == 'p')
@@ -62,7 +63,7 @@ int	ft_get_value(const char c, va_list	str)
 	else if (c == 'i' || c == 'd' || c == 'u')
 		i = ft_print_numbers(str, c);
 	else if (c == '%')
-		write(1, "%", 1);
+		i = ft_putchar('%');
 	return (i);
 }
 
@@ -81,7 +82,7 @@ static int	ft_print_numbers(va_list num, const char c)
 	free(str);
 	return (i);
 }
-
+/*
 int	main(void)
 {
 	char *str = malloc(sizeof(char) * 3);
@@ -97,7 +98,7 @@ int	main(void)
 	int y = printf("hola %s asdasda %d fin %p %u \n x\n", str, a, &a, u);
 	printf("\nMi f=%d caracteres.\nOr f=%d caracteres", z, y);
 	printf("\n----------------------------\n");
-/*	ft_printf("aaa  %  -\n");
-	printf("aaa  %  -\n"*/
+//	ft_printf("aaa  %  -\n");
+//	printf("aaa  %  -\n";
 
-}
+}*/
