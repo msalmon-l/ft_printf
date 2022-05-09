@@ -80,7 +80,7 @@ static char	ft_get_character(unsigned long num, char c)
 		x = 'd';
 	else if (num == 14)
 		x = 'e';
-	else if (num == 15)
+	else
 		x = 'f';
 	if (c == 'X' && num > 9)
 		x -= 32;

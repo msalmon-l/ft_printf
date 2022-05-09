@@ -68,12 +68,13 @@ int	ft_get_value(const char c, va_list	str)
 
 static int	ft_print_numbers(va_list num, const char c)
 {
-	int		i;
-	char	*str;
-
+	int				i;
+	char			*str;
+	
 	i = 0;
+	str = NULL;
 	if (c == 'u')
-		str = ft_itoa(va_arg(num, unsigned int));
+		str = (char *)ft_itoa_unsigned(va_arg(num, unsigned int));
 	else
 		str = ft_itoa(va_arg(num, int));
 	i = ft_putstr(str);
@@ -89,14 +90,14 @@ int	main(void)
 	str[2] = '\0';
 	int a = -500;
 	unsigned u = -10;
-	unsigned char b = 'z';
-	double d = 5;
+//	unsigned char b = 'z';
+//	double d = 5;
 //	printf("%");
 	int z = ft_printf("hola %s asdasda %d fin %p %u \n x\n", str, a, &a, u);
 	int y = printf("hola %s asdasda %d fin %p %u \n x\n", str, a, &a, u);
 	printf("\nMi f=%d caracteres.\nOr f=%d caracteres", z, y);
 	printf("\n----------------------------\n");
-	ft_printf("aaa  %  \n");
-	printf("aaa  %  \n");
+/*	ft_printf("aaa  %  -\n");
+	printf("aaa  %  -\n"*/
 
 }
